@@ -1,0 +1,25 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}" apply false
+}
+
+subprojects {
+	group = project.maven_group
+	version = project.mod_version
+
+	repositories {
+		mavenCentral()
+	}
+
+	plugins.withType(JavaPlugin).configureEach {
+		java {
+			toolchain {
+				languageVersion = JavaLanguageVersion.of(25)
+			}
+		}
+		tasks.withType(JavaCompile).configureEach {
+			options.release = 25
+			options.encoding = 'UTF-8'
+			options.compilerArgs += ['-Xlint:all', '-Xlint:-processing', '-Xlint:-serial', '-Xlint:-classfile']
+		}
+	}
+}

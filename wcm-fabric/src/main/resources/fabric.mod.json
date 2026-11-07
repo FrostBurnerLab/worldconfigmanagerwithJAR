@@ -1,0 +1,22 @@
+{
+	"schemaVersion": 1,
+	"id": "worldconfigmanager",
+	"version": "${version}",
+	"name": "WorldConfig Manager",
+	"description": "Every Minecraft world deserves its own configuration. Manage per-world configuration profiles, game rules, backups, history and imports from one interface.",
+	"authors": ["WorldConfig Manager contributors"],
+	"contact": {},
+	"icon": "assets/worldconfigmanager/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["dev.worldconfigmanager.fabric.WcmFabricMod"],
+		"client": ["dev.worldconfigmanager.fabric.client.WcmClientMod"],
+		"worldconfigmanager": ["dev.worldconfigmanager.fabric.example.ExampleWcmPlugin"]
+	},
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

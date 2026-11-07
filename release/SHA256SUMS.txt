@@ -1,0 +1,2 @@
+319232c08190806b69b66cbe51c6373337d288b2c91046bffe3fcb9c0de00137  worldconfigmanager-0.1.0-sources.jar
+067994bdbb3d092d1c2dd652e63bf87089f5323b8b5d7bbfaafa9f04b66066ce  worldconfigmanager-0.1.0.jar

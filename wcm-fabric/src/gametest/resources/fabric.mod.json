@@ -1,0 +1,14 @@
+{
+	"schemaVersion": 1,
+	"id": "worldconfigmanager-gametest",
+	"version": "1.0.0",
+	"name": "WorldConfig Manager game tests",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-gametest": ["dev.worldconfigmanager.gametest.WcmServerGameTests"],
+		"fabric-client-gametest": ["dev.worldconfigmanager.gametest.WcmClientGameTest"]
+	},
+	"depends": {
+		"worldconfigmanager": "*"
+	}
+}

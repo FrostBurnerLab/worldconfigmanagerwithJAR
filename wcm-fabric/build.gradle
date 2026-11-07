@@ -1,0 +1,56 @@
+plugins {
+	id 'net.fabricmc.fabric-loom'
+}
+
+base {
+	archivesName = project.archives_base_name
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"worldconfigmanager" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	implementation project(':wcm-core')
+	include project(':wcm-core')
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+java {
+	withSourcesJar()
+}
+
+// In-game tests: server game tests (headless) and client game tests (real client, needs a display, e.g. xvfb-run).
+fabricApi {
+	configureTests {
+		createSourceSet = true
+		modId = "worldconfigmanager-gametest"
+		enableGameTests = true
+		enableClientGameTests = true
+		eula = true
+	}
+}
+
+afterEvaluate {
+	loom.runs.matching { it.name == 'gameTest' }.configureEach {
+		vmArg "-Dfabric-api.gametest.report-file=${project.layout.buildDirectory.file('reports/gametest/server-gametest.xml').get().asFile}"
+	}
+}
